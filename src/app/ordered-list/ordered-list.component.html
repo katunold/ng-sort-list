@@ -1,0 +1,6 @@
+<input data-testid="add-item" [(ngModel)]="item" (keydown.enter)="addListItem()" />
+<button data-testid="sort-direction" (click)="sortItems(buttonText)">{{buttonText}}</button>
+<button data-testid="clear-list" (click)="clear()">clear</button>
+<ul data-testid="items-list">
+  <li *ngFor="let i of itemsList">{{i}}</li>
+</ul>
