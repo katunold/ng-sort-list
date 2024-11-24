@@ -10,38 +10,49 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './ordered-list.component.css'
 })
 export class OrderedListComponent {
-   item:string = "";
+  // Properties
+  item: string = '';
   itemsList: Array<string> = [];
-  buttonText: "down"|"up" = "down";
+  buttonText: 'down' | 'up' = 'down';
   sortAction: number = 1;
-  
-  addListItem() {
-    if(this.item.length) {
-      this.itemsList.push(this.item)
+
+  /**
+   * Adds a new item to the list and sorts it
+   */
+  addListItem(): void {
+    if (this.item.length) {
+      this.itemsList.push(this.item);
       this.sortHandler(this.buttonText);
     }
-    this.item="";
+    this.item = '';
   }
-  
-  sortItems(action: string){
-    this.buttonText = action === "down" ? "up" : "down";
-    this.sortHandler(this.buttonText);
-  } 
 
-  sortHandler(action: string) {
+  /**
+   * Toggles sort direction and triggers sort
+   */
+  sortItems(action: string): void {
+    this.buttonText = action === 'down' ? 'up' : 'down';
+    this.sortHandler(this.buttonText);
+  }
+
+  /**
+   * Handles the sorting of items based on direction
+   */
+  sortHandler(action: string): void {
     this.itemsList.sort((item1, item2) => {
-      if(action === "up") {
+      if (action === 'up') {
         return item2.localeCompare(item1);
-      }else {
+      } else {
         return item1.localeCompare(item2);
       }
-    })
-    
+    });
   }
-  
-  clear() {
-    this.item = "";
+
+  /**
+   * Clears the input and list
+   */
+  clear(): void {
+    this.item = '';
     this.itemsList = [];
   }
-  
 }
